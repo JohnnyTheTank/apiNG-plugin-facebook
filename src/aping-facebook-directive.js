@@ -57,6 +57,15 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
                                         }
                                     });
                                 break;
+
+                            case "event":
+                                facebookFactory.getEventsFromPageById(facebookSearchObject)
+                                    .success(function (_data) {
+                                        if (_data) {
+                                            apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings.type));
+                                        }
+                                    });
+                                break;
                         }
 
                     }

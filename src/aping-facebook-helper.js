@@ -44,6 +44,9 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
                 case "image":
                     returnObject = this.getImageItemByJsonData(_item);
                     break;
+                case "event":
+                    returnObject = this.getEventItemByJsonData(_item);
+                    break;
             }
         }
         return returnObject;
@@ -55,7 +58,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
         $.extend(true, socialObject, {
             blog_name: _item.from.name,
             blog_id: _item.from.id,
-            blog_link : this.getThisPlattformLink() + _item.from.id + "/",
+            blog_link: this.getThisPlattformLink() + _item.from.id + "/",
             intern_type: _item.type,
             intern_id: _item.id,
             img_url: _item.full_picture,
@@ -122,9 +125,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
         $.extend(true, videoObject, {
             blog_name: _item.from.name,
             blog_id: _item.from.id,
-            blog_link : this.getThisPlattformLink() + _item.from.id + "/",
-            intern_type: "video",
-            type: "video",
+            blog_link: this.getThisPlattformLink() + _item.from.id + "/",
             intern_id: _item.id,
             post_url: _item.permalink_url,
             timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time),
@@ -134,9 +135,9 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
         });
 
 
-        if(_item.format.length > 0) {
+        if (_item.format.length > 0) {
 
-            if(_item.format.length >= 3) {
+            if (_item.format.length >= 3) {
                 videoObject.img_url = _item.format[2].picture;
             } else {
                 videoObject.img_url = _item.format[_item.format.length - 1].picture;
@@ -153,9 +154,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
         $.extend(true, imageObject, {
             blog_name: _item.from.name,
             blog_id: _item.from.id,
-            blog_link : this.getThisPlattformLink() + _item.from.id + "/",
-            intern_type: "image",
-            type: "image",
+            blog_link: this.getThisPlattformLink() + _item.from.id + "/",
             intern_id: _item.id,
             post_url: _item.link,
             timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time),
@@ -163,8 +162,8 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             source: _item.images || false,
         });
 
-        if(_item.images.length > 0) {
-            if(_item.images.length >= 7) {
+        if (_item.images.length > 0) {
+            if (_item.images.length >= 7) {
                 imageObject.img_url = _item.images[2].source;
             } else {
                 imageObject.img_url = _item.images[0].source;
@@ -172,5 +171,37 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
         }
 
         return imageObject;
+    };
+
+    this.getEventItemByJsonData = function (_item) {
+        var eventObject = apingModels.getNew("event", this.getThisPlattformString());
+
+        $.extend(true, eventObject, {
+            blog_name: _item.owner.name,
+            blog_id: _item.owner.id,
+            blog_link: this.getThisPlattformLink() + _item.owner.id + "/",
+            intern_id: _item.id,
+            event_url: this.getThisPlattformLink() + _item.owner.id + "_" + _item.id + "/",
+            ticket_url: _item.ticket_uri || false,
+            start_timestamp: apingTimeHelper.getTimestampFromDateString(_item.start_time),
+            end_timestamp: _item.end_time ? apingTimeHelper.getTimestampFromDateString(_item.end_time) : false,
+            caption: _item.name || false,
+            text: _item.description || false,
+            img_url: _item.cover ? _item.cover.source : false,
+        });
+
+        if (_item.place) {
+            eventObject.place_name = _item.place.name || false;
+            if (_item.place.location) {
+                eventObject.city = _item.place.location.city || false;
+                eventObject.country = _item.place.location.country || false;
+                eventObject.latitude = _item.place.location.latitude || false;
+                eventObject.longitude = _item.place.location.longitude || false;
+                eventObject.street = _item.place.location.street || false;
+                eventObject.zip = _item.place.location.zip || false;
+            }
+        }
+
+        return eventObject;
     };
 }]);
