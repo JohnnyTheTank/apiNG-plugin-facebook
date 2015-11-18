@@ -1,0 +1,5 @@
+/config.codekit
+/bower_components
+/.idea/
+/.codekit-cache/
+/node_modules
