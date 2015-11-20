@@ -1,6 +1,6 @@
 {
   "name": "aping-plugin-facebook",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "facebook plugin for apiNG",
   "main": "Gruntfile.js",
   "scripts": {
