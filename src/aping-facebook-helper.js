@@ -14,7 +14,6 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
     this.getThisPlattformLink = function () {
         return "https://facebook.com/";
     };
-
     this.getObjectByJsonData = function (_data, _type) {
         var requestResults = [];
         if (_data) {
@@ -62,7 +61,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             intern_type: _item.type,
             intern_id: _item.id,
             img_url: _item.full_picture,
-            timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time)
+            timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000)
         });
 
 
@@ -128,7 +127,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             blog_link: this.getThisPlattformLink() + _item.from.id + "/",
             intern_id: _item.id,
             post_url: _item.permalink_url,
-            timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time),
+            timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000),
             text: _item.description,
             markup: _item.embed_html || false,
             source: _item.source || false,
@@ -157,7 +156,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             blog_link: this.getThisPlattformLink() + _item.from.id + "/",
             intern_id: _item.id,
             post_url: _item.link,
-            timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time),
+            timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000),
             text: _item.name || false,
             source: _item.images || false,
         });
@@ -183,8 +182,8 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             intern_id: _item.id,
             event_url: this.getThisPlattformLink() + _item.owner.id + "_" + _item.id + "/",
             ticket_url: _item.ticket_uri || false,
-            start_timestamp: apingTimeHelper.getTimestampFromDateString(_item.start_time),
-            end_timestamp: _item.end_time ? apingTimeHelper.getTimestampFromDateString(_item.end_time) : false,
+            start_timestamp: apingTimeHelper.getTimestampFromDateString(_item.start_time, 1000),
+            end_timestamp: _item.end_time ? apingTimeHelper.getTimestampFromDateString(_item.end_time, 1000) : false,
             caption: _item.name || false,
             text: _item.description || false,
             img_url: _item.cover ? _item.cover.source : false,
