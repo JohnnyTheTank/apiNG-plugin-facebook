@@ -22,7 +22,10 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             if (_data.data) {
 
                 angular.forEach(_data.data, function (value, key) {
-                    requestResults.push(_this.getItemByJsonData(value, _type));
+                    var tempResult = _this.getItemByJsonData(value, _type);
+                    if(tempResult) {
+                        requestResults.push(tempResult);
+                    }
                 });
             }
 
@@ -46,6 +49,9 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
                 case "event":
                     returnObject = this.getEventItemByJsonData(_item);
                     break;
+
+                default:
+                    return false;
             }
         }
         return returnObject;
