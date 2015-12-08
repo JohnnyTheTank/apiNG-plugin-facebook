@@ -30,12 +30,12 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
 
                     if (request.page) { //search for page id
 
-                        switch(appSettings.type) {
+                        switch(appSettings.model) {
                             case "social":
                                 facebookFactory.getPostsFromPageById(facebookSearchObject)
                                     .success(function (_data) {
                                         if (_data) {
-                                            apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings.type));
+                                            apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings.model));
                                         }
                                     });
                                 break;
@@ -44,7 +44,7 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
                                 facebookFactory.getVideosFromPageById(facebookSearchObject)
                                     .success(function (_data) {
                                         if (_data) {
-                                            apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings.type));
+                                            apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings.model));
                                         }
                                     });
                                 break;
@@ -53,7 +53,7 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
                                 facebookFactory.getPhotosFromPageById(facebookSearchObject)
                                     .success(function (_data) {
                                         if (_data) {
-                                            apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings.type));
+                                            apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings.model));
                                         }
                                     });
                                 break;
@@ -62,7 +62,7 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
                                 facebookFactory.getEventsFromPageById(facebookSearchObject)
                                     .success(function (_data) {
                                         if (_data) {
-                                            apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings.type));
+                                            apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings.model));
                                         }
                                     });
                                 break;
