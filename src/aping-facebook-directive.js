@@ -7,7 +7,7 @@
  */
 
 var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
-    .directive('apingFacebook', ['apingApiKeys', 'apingFacebookHelper', 'apingUtilityHelper', 'facebookFactory', function (apingApiKeys, apingFacebookHelper, apingUtilityHelper, facebookFactory) {
+    .directive('apingFacebook', ['apingFacebookHelper', 'apingUtilityHelper', 'facebookFactory', function (apingFacebookHelper, apingUtilityHelper, facebookFactory) {
         return {
             require: '?aping',
             restrict: 'A',
@@ -25,7 +25,7 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
                     var facebookSearchObject = {
                         'page': request.page,
                         'limit': request.items || appSettings.items,
-                        'access_token': apingApiKeys.facebook,
+                        'access_token': apingUtilityHelper.getApiCredentials(apingFacebookHelper.getThisPlattformString(), "access_token"),
                     };
 
                     if (request.page) { //search for page id

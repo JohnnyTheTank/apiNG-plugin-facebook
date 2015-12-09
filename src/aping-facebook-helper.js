@@ -71,6 +71,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600*1000)
         });
 
+        socialObject.date_time = new Date(socialObject.timestamp);
 
         switch (_item.type) {
             case 'photo':
@@ -140,6 +141,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             source: _item.source || false,
         });
 
+        videoObject.date_time = new Date(videoObject.timestamp);
 
         if (_item.format.length > 0) {
 
@@ -156,7 +158,6 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
     this.getImageItemByJsonData = function (_item) {
         var imageObject = apingModels.getNew("image", this.getThisPlattformString());
 
-
         $.extend(true, imageObject, {
             blog_name: _item.from.name,
             blog_id: _item.from.id,
@@ -167,6 +168,8 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             text: _item.name || false,
             source: _item.images || false,
         });
+
+        imageObject.date_time = new Date(imageObject.timestamp);
 
         if (_item.images.length > 0) {
             if (_item.images.length >= 7) {
@@ -195,6 +198,14 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             text: _item.description || false,
             img_url: _item.cover ? _item.cover.source : false,
         });
+
+        if(eventObject.start_date_time) {
+            eventObject.start_date_time = new Date(eventObject.start_timestamp);
+        }
+        if(eventObject.end_timestamp) {
+            eventObject.end_date_time = new Date(eventObject.end_timestamp);
+        }
+
 
         if (_item.place) {
             eventObject.place_name = _item.place.name || false;
