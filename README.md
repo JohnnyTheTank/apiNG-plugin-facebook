@@ -15,11 +15,11 @@ full: _the source platform provides a full list with usable results_ <br>
 partly: _the source platfrom provides just partly usable results_
 
 # Documentation
-    1. Installation
-    2. Access Token
-    3. Usage
+    I.   INSTALLATION
+    II.  ACCESS TOKEN
+    III. USAGE
 
-## 1. Installation
+## I. INSTALLATION
     a) Get files
     b) Include files
     c) Add dependencies
@@ -42,16 +42,42 @@ Add the module `jtt_aping_facebook` as a dependency to your app module:
 var app = angular.module('app', ['jtt_aping', 'jtt_aping_facebook']);
 ```
 
-## 2. Access Token
+## II. ACCESS TOKEN
     a) Generate your `access_token`
     b) Insert your `access_token` into `aping-config.js`
 
 ### a) Generate your `access_token`
-_coming soon ..._
+1. Login on [developers.facebook.com](https://developers.facebook.com/)
+    - Create an new app
+    - Choose website/webapp
+2. Open [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
+    - Press on `Graph API Explorer` dropdown button
+    - Choose your app
+    - Press on `Get Token` dropdown buton
+    - Choose `Get App Token`
+    - Copy generated `Access Token`
 
-### b) Insert your token into `aping-config.js`
-_coming soon ..._
+### b) Insert your `access_token` into `aping-config.js`
+Open `js/apiNG/aping-config.js` in your application folder. It should be look like this snippet:
+```js
+apingApp.config(['$provide', function ($provide) {
+    $provide.constant("apingApiKeys", {
+        //...
+        facebook: [
+            {'access_token':'<YOUR_FACEBOOK_TOKEN>'}
+        ],
+        //...
+    });
 
-## 3. Usage
+    $provide.constant("apingDefaultSettings", {
+        //...
+    });
+}]);
+```
+
+Replace `<YOUR_FACEBOOK_TOKEN>` with your facebook `access_token`
+
+
+## III. USAGE
 _coming soon ..._
 
