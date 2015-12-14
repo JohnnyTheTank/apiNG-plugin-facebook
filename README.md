@@ -4,12 +4,12 @@
 Used promise library: [angular-facebook-api-factory](https://github.com/JohnnyTheTank/angular-facebook-api-factory) _(included in minified distribution file)_
 
 ## Supported apiNG models
-|  model   | support |
-|----------|---------|
-| `social` | full    |
-| `image`  | full    |
-| `video`  | full    |
-| `event`  | full    |
+|  model   | support | max items<br>per request |
+|----------|---------|---------|
+| `social` | full    | 100     |
+| `image`  | full    | 100     |
+| `video`  | full    | 100     |
+| `event`  | full    | 100     |
 
 full: _the source platform provides a full list with usable results_ <br>
 partly: _the source platfrom provides just partly usable results_
