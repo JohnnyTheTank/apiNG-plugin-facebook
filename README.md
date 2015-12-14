@@ -1,6 +1,3 @@
-_**Note:** apiNG is currently under development and not ready yet for public use. **Release in early 2016**_
-
-# apiNG-plugin-facebook
 [Facebook Graph API](https://developers.facebook.com/docs/graph-api) plugin for [**apiNG**](https://github.com/JohnnyTheTank/apiNG)
 
 ## Supported apiNG models
@@ -24,7 +21,7 @@ You can choose your preferred method of installation:
 * Via bower: `bower install apiNG-plugin-facebook --save`
 * Download from github: [apiNG-plugin-facebook.zip](https://github.com/JohnnyTheTank/apiNG-plugin-facebook/zipball/master)
 
-Include **`apiNG-plugin-facebook.min.js`** in your apiNG application
+Include `apiNG-plugin-facebook.min.js` in your apiNG application
 ```html
 <script src="bower_components/apiNG-plugin-facebook/dist/apiNG-plugin-facebook.min.js"></script>
 ```
