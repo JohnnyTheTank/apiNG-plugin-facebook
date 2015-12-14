@@ -11,8 +11,8 @@ Used promise library: [angular-facebook-api-factory](https://github.com/JohnnyTh
 | `video`  | full    |
 | `event`  | full    |
 
-* full: _the source platform provides a full list with usable results_
-* partly: _the source platfrom provides just partly usable results_
+full: _the source platform provides a full list with usable results_ <br>
+partly: _the source platfrom provides just partly usable results_
 
 # Documentation
     1. Installation
@@ -44,7 +44,7 @@ var app = angular.module('app', ['jtt_aping', 'jtt_aping_facebook']);
 
 ## 2. Access Token
     a) Generate your `access_token`
-    b) Insert your token into `aping-config.js`
+    b) Insert your `access_token` into `aping-config.js`
 
 ### a) Generate your `access_token`
 _coming soon ..._
