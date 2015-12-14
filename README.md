@@ -55,7 +55,7 @@ var app = angular.module('app', ['jtt_aping', 'jtt_aping_facebook']);
     - Choose your app
     - Press on `Get Token` dropdown buton
     - Choose `Get App Token`
-    - Copy generated `Access Token`
+    - Copy generated `access_token`
 
 ### b) Insert your `access_token` into `aping-config.js`
 Open `js/apiNG/aping-config.js` in your application folder. It should be look like this snippet:
