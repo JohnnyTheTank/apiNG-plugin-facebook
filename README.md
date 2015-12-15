@@ -75,7 +75,7 @@ apingApp.config(['$provide', function ($provide) {
 }]);
 ```
 
-Replace `<YOUR_FACEBOOK_TOKEN>` with your facebook `access_token`
+:warning: Replace `<YOUR_FACEBOOK_TOKEN>` with your facebook `access_token`
 
 ## III. USAGE
 Add the plugin's directive `aping-facebook="[]"` to your apiNG directive and configure your requests
