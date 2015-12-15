@@ -77,7 +77,18 @@ apingApp.config(['$provide', function ($provide) {
 
 Replace `<YOUR_FACEBOOK_TOKEN>` with your facebook `access_token`
 
-
 ## III. USAGE
-_coming soon ..._
+Add the plugin's directive `aping-facebook="[]"` to your apiNG directive and configure your requests
+```html
+<aping
+    template-url="/template.html"
+    model="social"
+    items="20"
+    aping-facebook="[{'page':'<PAGE_NAME>'}]">
+</aping>
+```
+
+_full documentation coming soon ..._
+
+
 
