@@ -11,8 +11,9 @@ Used promise library: [angular-facebook-api-factory](https://github.com/JohnnyTh
 | `video`  | full    | `100`   |
 | `event`  | full    | `100`   |
 
-full: _the source platform provides a full list with usable results_ <br>
-partly: _the source platfrom provides just partly usable results_
+**support:**
+* full: _the source platform provides a full list with usable results_ <br>
+* partly: _the source platfrom provides just partly usable results_
 
 # Documentation
     I.   INSTALLATION
