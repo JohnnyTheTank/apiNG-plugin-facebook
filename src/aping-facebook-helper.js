@@ -15,7 +15,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
         return "https://facebook.com/";
     };
 
-    this.getObjectByJsonData = function (_data, _model, _appSettings) {
+    this.getObjectByJsonData = function (_data, _appSettings) {
         var requestResults = [];
         if (_data) {
             var _this = this;
@@ -27,7 +27,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
                     if(_appSettings.getNativeData === true || _appSettings.getNativeData === "true") {
                         tempResult = value;
                     } else {
-                        tempResult = _this.getItemByJsonData(value, _model);
+                        tempResult = _this.getItemByJsonData(value, _appSettings.model);
                     }
                     if(tempResult) {
                         requestResults.push(tempResult);

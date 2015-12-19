@@ -22,47 +22,62 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
 
                 requests.forEach(function (request) {
 
-                    var facebookSearchObject = {
-                        'page': request.page,
-                        'limit': request.items || appSettings.items,
-                        'access_token': apingUtilityHelper.getApiCredentials(apingFacebookHelper.getThisPlattformString(), "access_token"),
+                    //create helperObject for helper function call
+                    var helperObject = {
+                        model: appSettings.model,
                     };
+                    if(typeof appSettings.getNativeData !== "undefined") {
+                        helperObject.getNativeData = appSettings.getNativeData;
+                    } else {
+                        helperObject.getNativeData = false;
+                    }
+
+                    //create requestObject for api request call
+                    var requestObject = {
+                        page: request.page,
+                        access_token: apingUtilityHelper.getApiCredentials(apingFacebookHelper.getThisPlattformString(), "access_token"),
+                    };
+                    if(typeof request.items !== "undefined") {
+                        requestObject.limit = request.items;
+                    } else {
+                        requestObject.limit = appSettings.items;
+                    }
 
                     if (request.page) { //search for page id
 
                         switch(appSettings.model) {
                             case "social":
-                                facebookFactory.getPostsFromPageById(facebookSearchObject)
+                                facebookFactory.getPostsFromPageById(requestObject)
                                     .success(function (_data) {
                                         if (_data) {
-                                            apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings.model, appSettings));
+                                            apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings));
                                         }
                                     });
                                 break;
 
                             case "video":
-                                facebookFactory.getVideosFromPageById(facebookSearchObject)
+                                facebookFactory.getVideosFromPageById(requestObject)
                                     .success(function (_data) {
                                         if (_data) {
-                                            apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings.model, appSettings));
+                                            apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings));
                                         }
                                     });
                                 break;
 
                             case "image":
-                                facebookFactory.getPhotosFromPageById(facebookSearchObject)
+                                facebookFactory.getPhotosFromPageById(requestObject)
                                     .success(function (_data) {
                                         if (_data) {
-                                            apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings.model, appSettings));
+                                            apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings));
                                         }
                                     });
                                 break;
 
                             case "event":
-                                facebookFactory.getEventsFromPageById(facebookSearchObject)
+                                facebookFactory.getEventsFromPageById(requestObject)
                                     .success(function (_data) {
                                         if (_data) {
-                                            apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings.model, appSettings));
+                                            apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings));
                                         }
                                     });
                                 break;
