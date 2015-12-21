@@ -43,6 +43,20 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
                         requestObject.limit = appSettings.items;
                     }
 
+                    if(requestObject.limit == 0) {
+                        return false;
+                    }
+
+                    // -1 is "no explicit limit". same for NaN value
+                    if(requestObject.limit < 0 || isNaN(requestObject.limit)) {
+                        requestObject.limit = undefined;
+                    }
+
+                    // the api has a limit of 100 items per request
+                    if(requestObject.limit > 100) {
+                        requestObject.limit = 100;
+                    }
+
                     if (request.page) { //search for page id
 
                         switch(appSettings.model) {

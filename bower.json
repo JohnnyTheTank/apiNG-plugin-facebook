@@ -4,7 +4,7 @@
   "authors": [
     "Jonathan Hornung <jonathan.hornung@gmail.com>"
   ],
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "facebook plugin for apiNG",
   "main": "dist/angular-plugin-facebook.min.js",
   "moduleType": [],
@@ -27,8 +27,5 @@
   "dependencies": {
     "apiNG": "*",
     "angular-facebook-api-factory": "*"
-  },
-  "resolutions": {
-    "angular-masonry-packed": "~0.14.0"
   }
 }
