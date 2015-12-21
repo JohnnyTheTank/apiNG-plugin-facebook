@@ -106,7 +106,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             case 'event':
                 socialObject.type = "event";
                 socialObject.text = _item.description;
-                socialObject.caption = _item.caption || _item.name || false;
+                socialObject.caption = _item.caption || _item.name || undefined;
                 break;
         }
 
@@ -142,8 +142,8 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             post_url: _item.permalink_url,
             timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600*1000),
             text: _item.description,
-            markup: _item.embed_html || false,
-            source: _item.source || false,
+            markup: _item.embed_html || undefined,
+            source: _item.source || undefined,
         });
 
         videoObject.date_time = new Date(videoObject.timestamp);
@@ -170,8 +170,8 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             intern_id: _item.id,
             post_url: _item.link,
             timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600*1000),
-            text: _item.name || false,
-            source: _item.images || false,
+            text: _item.name || undefined,
+            source: _item.images || undefined,
         });
 
         imageObject.date_time = new Date(imageObject.timestamp);
@@ -196,12 +196,12 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             blog_link: this.getThisPlattformLink() + _item.owner.id + "/",
             intern_id: _item.id,
             event_url: this.getThisPlattformLink() + _item.owner.id + "_" + _item.id + "/",
-            ticket_url: _item.ticket_uri || false,
+            ticket_url: _item.ticket_uri || undefined,
             start_timestamp: apingTimeHelper.getTimestampFromDateString(_item.start_time, 1000, 3600*1000),
-            end_timestamp: _item.end_time ? apingTimeHelper.getTimestampFromDateString(_item.end_time, 1000, 3600*1000) : false,
-            caption: _item.name || false,
-            text: _item.description || false,
-            img_url: _item.cover ? _item.cover.source : false,
+            end_timestamp: _item.end_time ? apingTimeHelper.getTimestampFromDateString(_item.end_time, 1000, 3600*1000) : undefined,
+            caption: _item.name || undefined,
+            text: _item.description || undefined,
+            img_url: _item.cover ? _item.cover.source : undefined,
         });
 
         if(eventObject.start_date_time) {
@@ -213,14 +213,14 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
 
 
         if (_item.place) {
-            eventObject.place_name = _item.place.name || false;
+            eventObject.place_name = _item.place.name || undefined;
             if (_item.place.location) {
-                eventObject.city = _item.place.location.city || false;
-                eventObject.country = _item.place.location.country || false;
-                eventObject.latitude = _item.place.location.latitude || false;
-                eventObject.longitude = _item.place.location.longitude || false;
-                eventObject.street = _item.place.location.street || false;
-                eventObject.zip = _item.place.location.zip || false;
+                eventObject.city = _item.place.location.city || undefined;
+                eventObject.country = _item.place.location.country || undefined;
+                eventObject.latitude = _item.place.location.latitude || undefined;
+                eventObject.longitude = _item.place.location.longitude || undefined;
+                eventObject.street = _item.place.location.street || undefined;
+                eventObject.zip = _item.place.location.zip || undefined;
             }
         }
 
