@@ -89,6 +89,17 @@ Add the plugin's directive `aping-facebook="[]"` to your apiNG directive and con
 </aping>
 ```
 
+### API rate limit
+
+Visit the [official API Rate Limit Documetation](https://developers.facebook.com/docs/graph-api/advanced/rate-limiting)
+
+Here's how rate limiting on the Graph API works:
+- Rate limiting is done on your Facebook AppId. If your app reaches a rate limit, all calls made for that app will be limited not just on a per-user basis.
+- Rate limiting is calculated by taking the number of users your app had the previous day and adding today's new logins. This gives a base number of users that your app has.
+- Each each app is given an allotment of 200 API calls per user in any given 60 minute window.
+
+
+
 _full documentation coming soon ..._
 
 
