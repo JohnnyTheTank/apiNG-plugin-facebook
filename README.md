@@ -1,19 +1,8 @@
 **_apiNG-plugin-facebook_** is a [Facebook Graph API](https://developers.facebook.com/docs/graph-api) plugin for [**apiNG**](https://github.com/JohnnyTheTank/apiNG).
 
 # Information
-Used promise library: [angular-facebook-api-factory](https://github.com/JohnnyTheTank/angular-facebook-api-factory) _(included in minified distribution file)_
-
-## Supported apiNG models
-|  model   | support | max items<br>per request |
-|----------|---------|---------|
-| `social` | full    | `100`   |
-| `image`  | full    | `100`   |
-| `video`  | full    | `100`   |
-| `event`  | full    | `100`   |
-
-**support:**
-* full: _the source platform provides a full list with usable results_ <br>
-* partly: _the source platfrom provides just partly usable results_
+* **Supported apiNG models: `social`, `image`, `video`, `event`**
+* Used promise library: [angular-facebook-api-factory](https://github.com/JohnnyTheTank/angular-facebook-api-factory) _(included in minified distribution file)_
 
 # Documentation
     I.   INSTALLATION
@@ -79,26 +68,45 @@ apingApp.config(['$provide', function ($provide) {
 :warning: Replace `<YOUR_FACEBOOK_TOKEN>` with your facebook `access_token`
 
 ## III. USAGE
+    a) HTML
+    b) Models
+    c) Rate limit
+
+### a) HTML
 Add the plugin's directive `aping-facebook="[]"` to your apiNG directive and configure your requests
 ```html
 <aping
-    template-url="/template.html"
+    template-url="templates/social.html"
     model="social"
     items="20"
     aping-facebook="[{'page':'<PAGE_NAME>'}]">
 </aping>
 ```
 
-### API rate limit
+### b) Models
+Supported apiNG models
 
-Visit the [official API Rate Limit Documetation](https://developers.facebook.com/docs/graph-api/advanced/rate-limiting)
+|  model   | support | max items<br>per request | (native) default items<br>per request |
+|----------|---------|---------|--------|
+| `social` | full    | `100`   | `25`   |
+| `image`  | full    | `100`   | `25`   |
+| `video`  | full    | `100`   | `25`   |
+| `event`  | full    | `100`   | `25`   |
 
-Here's how rate limiting on the Graph API works:
+**support:**
+* full: _the source platform provides a full list with usable results_ <br>
+* partly: _the source platfrom provides just partly usable results_
+
+### c) Rate limit
+
+Visit the [official API rate limit documentation](https://developers.facebook.com/docs/graph-api/advanced/rate-limiting)
+
+Here's how rate limiting on the Facebook Graph API works:
 - Rate limiting is done on your Facebook AppId. If your app reaches a rate limit, all calls made for that app will be limited not just on a per-user basis.
 - Rate limiting is calculated by taking the number of users your app had the previous day and adding today's new logins. This gives a base number of users that your app has.
-- Each each app is given an allotment of 200 API calls per user in any given 60 minute window.
+- **Each app** is given an allotment of **200 API calls per user** in any given **60 minute window**.
 
-
+---
 
 _full documentation coming soon ..._
 
