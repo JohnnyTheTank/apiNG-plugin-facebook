@@ -13,6 +13,7 @@
     a) Get files
     b) Include files
     c) Add dependencies
+    d) Add the plugin
 
 ### a) Get files
 You can choose your preferred method of installation:
@@ -30,6 +31,17 @@ Include `apiNG-plugin-facebook.min.js` in your apiNG application
 Add the module `jtt_aping_facebook` as a dependency to your app module:
 ```js
 var app = angular.module('app', ['jtt_aping', 'jtt_aping_facebook']);
+```
+
+### d) Add the plugin
+Add the plugin's directive `aping-facebook="[]"` to your apiNG directive and configure your requests (_**III. USAGE**_)
+```html
+<aping
+    template-url="templates/social.html"
+    model="social"
+    items="20"
+    aping-facebook="[{'page':'<PAGE_NAME>'}]">
+</aping>
 ```
 
 ## II. ACCESS TOKEN
@@ -68,34 +80,39 @@ apingApp.config(['$provide', function ($provide) {
 :warning: Replace `<YOUR_FACEBOOK_TOKEN>` with your facebook `access_token`
 
 ## III. USAGE
-    a) HTML
-    b) Models
+    a) Models
+    b) Requests
     c) Rate limit
 
-### a) HTML
-Add the plugin's directive `aping-facebook="[]"` to your apiNG directive and configure your requests
-```html
-<aping
-    template-url="templates/social.html"
-    model="social"
-    items="20"
-    aping-facebook="[{'page':'<PAGE_NAME>'}]">
-</aping>
-```
-
-### b) Models
+### a) Models
 Supported apiNG models
 
-|  model   | support | max items<br>per request | (native) default items<br>per request |
-|----------|---------|---------|--------|
-| `social` | full    | `100`   | `25`   |
-| `image`  | full    | `100`   | `25`   |
-| `video`  | full    | `100`   | `25`   |
-| `event`  | full    | `100`   | `25`   |
+|  model   | content | support | max items<br>per request | (native) default items<br>per request |
+|----------|---------|---------|--------|---------|
+| `social` | last **posts** from users wall | full    | `100`   | `25`   |
+| `image`  | last **images** from users wall | full    | `100`   | `25`   |
+| `video`  | last **videos** from users wall  | full    | `100`   | `25`   |
+| `event`  | last **events** from users wall  | full    | `100`   | `25`   |
 
 **support:**
 * full: _the source platform provides a full list with usable results_ <br>
 * partly: _the source platfrom provides just partly usable results_
+
+
+### b) Requests
+* Every **apiNG plugin** expects an array of **requests** as html attribute.
+* Every **request** is defined as single API call or something like that.
+
+Possible parameters:
+
+|  parameter  | sample | description | optional |
+|----------|---------|---------|---------|
+| **`page`** | `michaeljackson` | name or id of any facebook page | no |
+| **`items`**  | `0`-`100` | items per request |  yes  |
+
+Samples:
+* `[{'page':'muenchen'}, {'page':'Berlin'}, {'page':'Koeln'}]`
+* `[{'page':'muenchen', 'items':10}, {'page':'Berlin', 'items':70}]`
 
 ### c) Rate limit
 
@@ -105,10 +122,6 @@ Here's how rate limiting on the Facebook Graph API works:
 - Rate limiting is done on your Facebook AppId. If your app reaches a rate limit, all calls made for that app will be limited not just on a per-user basis.
 - Rate limiting is calculated by taking the number of users your app had the previous day and adding today's new logins. This gives a base number of users that your app has.
 - **Each app** is given an allotment of **200 API calls per user** in any given **60 minute window**.
-
----
-
-_full documentation coming soon ..._
 
 
 
