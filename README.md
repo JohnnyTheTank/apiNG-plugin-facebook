@@ -123,5 +123,6 @@ Here's how rate limiting on the Facebook Graph API works:
 - Rate limiting is calculated by taking the number of users your app had the previous day and adding today's new logins. This gives a base number of users that your app has.
 - **Each app** is given an allotment of **200 API calls per user** in any given **60 minute window**.
 
-
+# Licence
+MIT
 
