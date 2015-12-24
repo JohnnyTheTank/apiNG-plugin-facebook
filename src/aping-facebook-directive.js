@@ -14,8 +14,6 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
             replace: 'false',
             link: function (scope, element, attrs, apingController) {
 
-                var platform = "facebook";
-
                 var appSettings = apingController.getAppSettings();
 
                 var requests = apingUtilityHelper.parseJsonFromAttributes(attrs.apingFacebook, apingFacebookHelper.getThisPlattformString(), appSettings);

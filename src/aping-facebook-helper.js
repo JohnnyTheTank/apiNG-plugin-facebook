@@ -15,6 +15,34 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
         return "https://facebook.com/";
     };
 
+    /**
+     * returns object with attributes "width" and "height" of video
+     *
+     * @param _format {Object}
+     * @returns {Object}
+     */
+    this.getRatioFromFormatObject = function (_format) {
+        var ratio = {
+            width:undefined,
+            height:undefined,
+        };
+        if (typeof _format !== "undefined" && _format.constructor === Array) {
+            angular.forEach(_format, function (value, key) {
+                if(typeof value.filter !== "undefined") {
+                    if(value.filter === "native") {
+                        if(typeof value.width !== "undefined") {
+                            ratio.width = value.width;
+                        }
+                        if(typeof value.height !== "undefined") {
+                            ratio.height = value.height;
+                        }
+                    }
+                }
+            });
+            return ratio;
+        }
+    };
+
     this.getObjectByJsonData = function (_data, _helperObject) {
         var requestResults = [];
         if (_data) {
@@ -148,12 +176,22 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
 
         videoObject.date_time = new Date(videoObject.timestamp);
 
-        if (_item.format.length > 0) {
+        if(typeof _item.format !== "undefined") {
+            if (_item.format.length > 0) {
 
-            if (_item.format.length >= 3) {
-                videoObject.img_url = _item.format[2].picture;
-            } else {
-                videoObject.img_url = _item.format[_item.format.length - 1].picture;
+                if (_item.format.length >= 3) {
+                    videoObject.img_url = _item.format[2].picture;
+                } else {
+                    videoObject.img_url = _item.format[_item.format.length - 1].picture;
+                }
+
+                var ratio = this.getRatioFromFormatObject(_item.format);
+                if(typeof ratio.width !== "undefined") {
+                    videoObject.width = ratio.width;
+                }
+                if(typeof ratio.height !== "undefined") {
+                    videoObject.height = ratio.height;
+                }
             }
         }
 
