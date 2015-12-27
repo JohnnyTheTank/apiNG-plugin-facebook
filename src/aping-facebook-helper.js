@@ -43,6 +43,96 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
         }
     };
 
+    /**
+     * returns the difference between two integers
+     *
+     * @param _int1 {number}
+     * @param _int2 {number}
+     * @returns {number}
+     */
+    this.getDifference = function (_int1, _int2) {
+        if(_int1 > _int2) {
+            return _int1 - _int2;
+        } else {
+            return _int2 - _int1;
+        }
+    };
+
+    /**
+     * returns an object with images urls and dimensions
+     *
+     * @param _array {Array}
+     * @returns {Object}
+     */
+    this.getImagesFromImageArray = function (_array) {
+
+        var that = this;
+
+        var returnObject = {
+            thumb_url: undefined,
+            thumb_width: undefined, // best case 200px
+            thumb_height: undefined,
+            img_url: undefined,
+            img_width: undefined, // best case 700px
+            img_height: undefined,
+            native_url: undefined,
+            native_width: undefined,
+            native_height: undefined,
+        };
+
+        if (_array.constructor === Array) {
+            angular.forEach(_array, function (value, key) {
+                if(typeof value.source !== "undefined") {
+                    if(typeof returnObject.thumb_url === "undefined") {
+                        returnObject.thumb_url = value.source;
+                        returnObject.thumb_width = value.width;
+                        returnObject.thumb_height = value.height;
+                    } else {
+                        if(
+                            that.getDifference(returnObject.thumb_width, 200) > that.getDifference(value.width, 200)
+                            &&
+                            value.width >= 200
+                        ) {
+                            returnObject.thumb_url = value.source;
+                            returnObject.thumb_width = value.width;
+                            returnObject.thumb_height = value.height;
+                        }
+                    }
+
+                    if(typeof returnObject.img_url === "undefined") {
+                        returnObject.img_url = value.source;
+                        returnObject.img_width = value.width;
+                        returnObject.img_height = value.height;
+                    } else {
+                        if(
+                            that.getDifference(returnObject.img_width, 700) > that.getDifference(value.width, 700)
+                        ) {
+                            returnObject.img_url = value.source;
+                            returnObject.img_width = value.width;
+                            returnObject.img_height = value.height;
+                        }
+                    }
+
+                    if(typeof returnObject.native_url === "undefined") {
+                        returnObject.native_url = value.source;
+                        returnObject.native_width = value.width;
+                        returnObject.native_height = value.height;
+                    } else {
+                        if(
+                            value.width > returnObject.native_width
+                        ) {
+                            returnObject.native_url = value.source;
+                            returnObject.native_width = value.width;
+                            returnObject.native_height = value.height;
+                        }
+                    }
+                }
+            });
+        }
+
+        return returnObject;
+    };
+
     this.getObjectByJsonData = function (_data, _helperObject) {
         var requestResults = [];
         if (_data) {
@@ -176,6 +266,10 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
 
         videoObject.date_time = new Date(videoObject.timestamp);
 
+        if(typeof _item.length !== "undefined") {
+            videoObject.length = _item.length;
+        }
+
         if(typeof _item.format !== "undefined") {
             if (_item.format.length > 0) {
 
@@ -215,11 +309,10 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
         imageObject.date_time = new Date(imageObject.timestamp);
 
         if (_item.images.length > 0) {
-            if (_item.images.length >= 7) {
-                imageObject.img_url = _item.images[2].source;
-            } else {
-                imageObject.img_url = _item.images[0].source;
-            }
+
+            var tempImageArray = this.getImagesFromImageArray(_item.images);
+
+            $.extend(true, imageObject, tempImageArray);
         }
 
         return imageObject;
