@@ -70,7 +70,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
 
         var returnObject = {
             thumb_url: undefined,
-            thumb_width: undefined, // best case 200px
+            thumb_width: undefined, // best case 200px (min)
             thumb_height: undefined,
             img_url: undefined,
             img_width: undefined, // best case 700px
