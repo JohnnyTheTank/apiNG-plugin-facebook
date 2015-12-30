@@ -322,9 +322,9 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
         var eventObject = apingModels.getNew("event", this.getThisPlattformString());
 
         $.extend(true, eventObject, {
-            blog_name: _item.owner.name,
-            blog_id: _item.owner.id,
-            blog_link: this.getThisPlattformLink() + _item.owner.id + "/",
+            artist_name: _item.owner.name,
+            artist_id: _item.owner.id,
+            artist_link: this.getThisPlattformLink() + _item.owner.id + "/",
             intern_id: _item.id,
             event_url: this.getThisPlattformLink() + _item.owner.id + "_" + _item.id + "/",
             ticket_url: _item.ticket_uri || undefined,
