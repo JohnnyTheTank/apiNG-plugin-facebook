@@ -335,7 +335,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             img_url: _item.cover ? _item.cover.source : undefined,
         });
 
-        if(eventObject.start_date_time) {
+        if(eventObject.start_timestamp) {
             eventObject.start_date_time = new Date(eventObject.start_timestamp);
         }
         if(eventObject.end_timestamp) {

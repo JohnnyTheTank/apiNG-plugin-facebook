@@ -4,7 +4,7 @@
   "authors": [
     "Jonathan Hornung <jonathan.hornung@gmail.com>"
   ],
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "facebook plugin for apiNG",
   "main": "dist/angular-plugin-facebook.min.js",
   "moduleType": [],
