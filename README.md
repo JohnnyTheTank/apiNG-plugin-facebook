@@ -1,3 +1,6 @@
+[logo]: http://aping.io/logo/320/aping-plugin.png "apiNG Plugin"
+![apiNG][logo]
+
 **_apiNG-plugin-facebook_** is a [Facebook Graph API](https://developers.facebook.com/docs/graph-api) plugin for [**apiNG**](https://github.com/JohnnyTheTank/apiNG).
 
 # Information
