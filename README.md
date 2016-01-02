@@ -25,7 +25,7 @@ You can choose your preferred method of installation:
 * Download from github: [apiNG-plugin-facebook.zip](https://github.com/JohnnyTheTank/apiNG-plugin-facebook/zipball/master)
 
 ### b) Include files
-Include `apiNG-plugin-facebook.min.js` in your apiNG application
+Include `aping-plugin-facebook.min.js` in your apiNG application
 ```html
 <script src="bower_components/apiNG-plugin-facebook/dist/aping-plugin-facebook.min.js"></script>
 ```
