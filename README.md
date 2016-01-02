@@ -27,7 +27,7 @@ You can choose your preferred method of installation:
 ### b) Include files
 Include `apiNG-plugin-facebook.min.js` in your apiNG application
 ```html
-<script src="bower_components/apiNG-plugin-facebook/dist/apiNG-plugin-facebook.min.js"></script>
+<script src="bower_components/apiNG-plugin-facebook/dist/aping-plugin-facebook.min.js"></script>
 ```
 
 ### c) Add dependencies
