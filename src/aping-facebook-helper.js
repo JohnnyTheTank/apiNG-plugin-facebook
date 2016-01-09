@@ -1,12 +1,6 @@
 "use strict";
 
-/**
- @author Jonathan Hornung (https://github.com/JohnnyTheTank)
- @url https://github.com/JohnnyTheTank/apiNG-plugin-facebok
- @licence MIT
- */
-
-jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper', 'apingUtilityHelper', function (apingModels, apingTimeHelper, apingUtilityHelper) {
+jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper', 'apingUtilityHelper', 'facebookPagesImages', function (apingModels, apingTimeHelper, apingUtilityHelper, facebookPagesImages) {
     this.getThisPlattformString = function () {
         return "facebook";
     };
@@ -136,16 +130,17 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
     this.getObjectByJsonData = function (_data, _helperObject) {
         var requestResults = [];
         if (_data) {
+
             var _this = this;
 
-            if (_data.data) {
+            if (_data.data && _data.data.data) {
 
-                angular.forEach(_data.data, function (value, key) {
+                angular.forEach(_data.data.data, function (value, key) {
                     var tempResult;
                     if(_helperObject.getNativeData === true || _helperObject.getNativeData === "true") {
                         tempResult = value;
                     } else {
-                        tempResult = _this.getItemByJsonData(value, _helperObject.model);
+                        tempResult = _this.getItemByJsonData(value, _helperObject);
                     }
                     if(tempResult) {
                         requestResults.push(tempResult);
@@ -157,21 +152,21 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
         return requestResults;
     };
 
-    this.getItemByJsonData = function (_item, _model) {
+    this.getItemByJsonData = function (_item, _helperObject) {
         var returnObject = {};
-        if (_item && _model) {
-            switch (_model) {
+        if (_item && _helperObject.model) {
+            switch (_helperObject.model) {
                 case "social":
-                    returnObject = this.getSocialItemByJsonData(_item);
+                    returnObject = this.getSocialItemByJsonData(_item, _helperObject);
                     break;
                 case "video":
-                    returnObject = this.getVideoItemByJsonData(_item);
+                    returnObject = this.getVideoItemByJsonData(_item, _helperObject);
                     break;
                 case "image":
-                    returnObject = this.getImageItemByJsonData(_item);
+                    returnObject = this.getImageItemByJsonData(_item, _helperObject);
                     break;
                 case "event":
-                    returnObject = this.getEventItemByJsonData(_item);
+                    returnObject = this.getEventItemByJsonData(_item, _helperObject);
                     break;
 
                 default:
@@ -181,7 +176,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
         return returnObject;
     };
 
-    this.getSocialItemByJsonData = function (_item) {
+    this.getSocialItemByJsonData = function (_item, _helperObject) {
         var socialObject = apingModels.getNew("social", this.getThisPlattformString());
 
         $.extend(true, socialObject, {
@@ -245,11 +240,17 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             }
         }
 
+        if ((_helperObject.showAvatar === true || _helperObject.showAvatar === "true") && !socialObject.img_url) {
+            if(facebookPagesImages[_item.from.id]) {
+                socialObject.img_url = facebookPagesImages[_item.from.id];
+            }
+        }
+
 
         return socialObject;
     };
 
-    this.getVideoItemByJsonData = function (_item) {
+    this.getVideoItemByJsonData = function (_item, _helperObject) {
         var videoObject = apingModels.getNew("video", this.getThisPlattformString());
 
         $.extend(true, videoObject, {
@@ -289,10 +290,16 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             }
         }
 
+        if ((_helperObject.showAvatar === true || _helperObject.showAvatar === "true") && !videoObject.img_url) {
+            if(facebookPagesImages[_item.from.id]) {
+                videoObject.img_url = facebookPagesImages[_item.from.id];
+            }
+        }
+
         return videoObject;
     };
 
-    this.getImageItemByJsonData = function (_item) {
+    this.getImageItemByJsonData = function (_item, _helperObject) {
         var imageObject = apingModels.getNew("image", this.getThisPlattformString());
 
         $.extend(true, imageObject, {
@@ -318,7 +325,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
         return imageObject;
     };
 
-    this.getEventItemByJsonData = function (_item) {
+    this.getEventItemByJsonData = function (_item, _helperObject) {
         var eventObject = apingModels.getNew("event", this.getThisPlattformString());
 
         $.extend(true, eventObject, {
@@ -352,6 +359,12 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
                 eventObject.longitude = _item.place.location.longitude || undefined;
                 eventObject.street = _item.place.location.street || undefined;
                 eventObject.zip = _item.place.location.zip || undefined;
+            }
+        }
+
+        if ((_helperObject.showAvatar === true || _helperObject.showAvatar === "true") && !eventObject.img_url) {
+            if(facebookPagesImages[_item.from.id]) {
+                eventObject.img_url = facebookPagesImages[_item.from.id];
             }
         }
 

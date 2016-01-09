@@ -5,7 +5,7 @@
 
 # Information
 * **Supported apiNG models: `social`, `image`, `video`, `event`**
-* Used promise library: [angular-facebook-api-factory](https://github.com/JohnnyTheTank/angular-facebook-api-factory) _(included in minified distribution file)_
+* Used promise library: [angular-facebook-api-factory](https://github.com/JohnnyTheTank/angular-facebook-api-factory) _(included in distribution files)_
 
 # Documentation
     I.   INSTALLATION
@@ -13,21 +13,31 @@
     III. USAGE
 
 ## I. INSTALLATION
-    a) Get files
-    b) Include files
+    a) Get file
+    b) Include file
     c) Add dependencies
     d) Add the plugin
 
-### a) Get files
+### a) Get file
 You can choose your preferred method of installation:
 
-* Via bower: `bower install apiNG-plugin-facebook --save`
-* Download from github: [apiNG-plugin-facebook.zip](https://github.com/JohnnyTheTank/apiNG-plugin-facebook/zipball/master)
+1. Install via either [bower](http://bower.io/), [npm](https://www.npmjs.com/) or downloaded files:
+    1. `bower install apiNG-plugin-facebook --save`
+    2. `npm install aping-plugin-facebook --save`
+    3. download [apiNG-plugin-facebook.zip](https://github.com/JohnnyTheTank/apiNG-plugin-facebook/zipball/master)
 
-### b) Include files
+### b) Include file
 Include `aping-plugin-facebook.min.js` in your apiNG application
+
 ```html
+<!-- when using bower -->
 <script src="bower_components/apiNG-plugin-facebook/dist/aping-plugin-facebook.min.js"></script>
+
+<!-- when using npm -->
+<script src="node_modules/aping-plugin-facebook/dist/aping-plugin-facebook.min.js"></script>
+
+<!-- when using downloaded files -->
+<script src="aping-plugin-facebook.min.js"></script>
 ```
 
 ### c) Add dependencies
@@ -106,10 +116,11 @@ Supported apiNG models
 Every **apiNG plugin** expects an array of **requests** as html attribute.
 
 #### Requests by Page
-|  parameter  | sample | description | optional |
-|----------|---------|---------|---------|
-| **`page`** | `michaeljackson` | name or id of any facebook page | no |
-| **`items`**  | `0`-`100` | items per request |  yes  |
+|  parameter  | sample | default | description | optional |
+|----------|---------|---------|---------|---------|
+| **`page`** | `michaeljackson` |  | name or id of any facebook page | no |
+| **`items`**  | `0`-`100` | `25` | items per request |  yes  |
+| **`showAvatar`** | `true` | `false` | Use `true` for show users avatar as image if post has no own image | yes |
 
 Samples:
 * `[{'page':'muenchen'}, {'page':'Berlin'}, {'page':'Koeln'}]`

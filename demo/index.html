@@ -9,17 +9,15 @@
     <script src="../bower_components/apiNG/dist/aping.min.js"></script>
     <script src="aping-config.js"></script>
     <script src="app.js"></script>
-    <script src="../bower_components/angular-facebook-api-factory/src/angular-facebook-api-factory.js"></script>
-    <script src="../src/aping-facebook-directive.js"></script>
-    <script src="../src/aping-facebook-helper.js"></script>
+    <script src="../dist/aping-plugin-facebook.js"></script>
 </head>
 <body ng-app="app">
 
 <aping
-    model="video"
+    model="social"
     items="20"
     get-native-data="false"
-    aping-facebook="[{'page':'freundevonniemand'}]">
+    aping-facebook="[{'page':'johannesoerding', 'showAvatar':true}]">
 </aping>
 
 
