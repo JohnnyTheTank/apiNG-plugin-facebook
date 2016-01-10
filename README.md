@@ -5,28 +5,36 @@
 
 # Information
 * **Supported apiNG models: `social`, `image`, `video`, `event`**
+* This plugin supports the [`get-native-data` parameter](https://aping.readme.io/docs/configuration#parameters)
+* This plugin needs an [access token](#2-access-token) :warning:
 * Used promise library: [angular-facebook-api-factory](https://github.com/JohnnyTheTank/angular-facebook-api-factory) _(included in distribution files)_
 
 # Documentation
-    I.   INSTALLATION
-    II.  ACCESS TOKEN
-    III. USAGE
 
-## I. INSTALLATION
-    a) Get file
-    b) Include file
-    c) Add dependencies
-    d) Add the plugin
+1. [INSTALLATION](#1-installation)
+    1. Get file
+    2. Include file
+    3. Add dependencies
+    4. Add plugin
+2. [ACCESS TOKEN](#2-access-token)
+    1. Generate your `access_token`
+    2. Insert your `access_token` into `aping-config.js`
+3. [USAGE](#3-usage)
+    1. Models
+    2. Requests
+    3. Rate limit
 
-### a) Get file
-You can choose your preferred method of installation:
 
-1. Install via either [bower](http://bower.io/), [npm](https://www.npmjs.com/) or downloaded files:
-    1. `bower install apiNG-plugin-facebook --save`
-    2. `npm install aping-plugin-facebook --save`
-    3. download [apiNG-plugin-facebook.zip](https://github.com/JohnnyTheTank/apiNG-plugin-facebook/zipball/master)
+## 1. INSTALLATION
 
-### b) Include file
+### I. Get file
+Install via either [bower](http://bower.io/), [npm](https://www.npmjs.com/) or downloaded files:
+
+* `bower install apiNG-plugin-facebook --save`
+* `npm install aping-plugin-facebook --save`
+* download [apiNG-plugin-facebook.zip](https://github.com/JohnnyTheTank/apiNG-plugin-facebook/zipball/master)
+
+### II. Include file
 Include `aping-plugin-facebook.min.js` in your apiNG application
 
 ```html
@@ -40,13 +48,13 @@ Include `aping-plugin-facebook.min.js` in your apiNG application
 <script src="aping-plugin-facebook.min.js"></script>
 ```
 
-### c) Add dependencies
+### III. Add dependencies
 Add the module `jtt_aping_facebook` as a dependency to your app module:
 ```js
 var app = angular.module('app', ['jtt_aping', 'jtt_aping_facebook']);
 ```
 
-### d) Add the plugin
+### IV. Add the plugin
 Add the plugin's directive `aping-facebook="[]"` to your apiNG directive and configure your requests (_**III. USAGE**_)
 ```html
 <aping
@@ -57,11 +65,9 @@ Add the plugin's directive `aping-facebook="[]"` to your apiNG directive and con
 </aping>
 ```
 
-## II. ACCESS TOKEN
-    a) Generate your `access_token`
-    b) Insert your `access_token` into `aping-config.js`
+## 2. ACCESS TOKEN
 
-### a) Generate your `access_token`
+### I. Generate your `access_token`
 1. Login on [developers.facebook.com](https://developers.facebook.com/)
     - Create an new app
     - Choose website/webapp
@@ -72,7 +78,7 @@ Add the plugin's directive `aping-facebook="[]"` to your apiNG directive and con
     - Choose `Get App Token`
     - Copy generated `access_token`
 
-### b) Insert your `access_token` into `aping-config.js`
+### II. Insert your `access_token` into `aping-config.js`
 Open `js/apiNG/aping-config.js` in your application folder. It should be look like this snippet:
 ```js
 apingApp.config(['$provide', function ($provide) {
@@ -92,12 +98,9 @@ apingApp.config(['$provide', function ($provide) {
 
 :warning: Replace `<YOUR_FACEBOOK_TOKEN>` with your facebook `access_token`
 
-## III. USAGE
-    a) Models
-    b) Requests
-    c) Rate limit
+## 3. USAGE
 
-### a) Models
+### I. Models
 Supported apiNG models
 
 |  model   | content | support | max items<br>per request | (native) default items<br>per request |
@@ -112,7 +115,7 @@ Supported apiNG models
 * partly: _the source platfrom provides just partly usable results_
 
 
-### b) Requests
+### II. Requests
 Every **apiNG plugin** expects an array of **requests** as html attribute.
 
 #### Requests by Page
@@ -126,7 +129,7 @@ Samples:
 * `[{'page':'muenchen'}, {'page':'Berlin'}, {'page':'Koeln'}]`
 * `[{'page':'muenchen', 'items':10}, {'page':'Berlin', 'items':70}]`
 
-### c) Rate limit
+### III. Rate limit
 
 Visit the [official API rate limit documentation](https://developers.facebook.com/docs/graph-api/advanced/rate-limiting)
 
