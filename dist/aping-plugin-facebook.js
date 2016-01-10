@@ -1,8 +1,8 @@
 /**
     @name: aping-plugin-facebook 
-    @version: 0.7.0 (09-01-2016) 
+    @version: 0.7.5 (10-01-2016) 
     @author: Jonathan Hornung 
-    @url: https://github.com/JohnnyTheTank/apiNG-plugin-facebook#readme 
+    @url: https://github.com/JohnnyTheTank/apiNG-plugin-facebook 
     @license: MIT
 */
 "use strict";
@@ -16,7 +16,6 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
             link: function (scope, element, attrs, apingController) {
 
                 var appSettings = apingController.getAppSettings();
-
                 var requests = apingUtilityHelper.parseJsonFromAttributes(attrs.apingFacebook, apingFacebookHelper.getThisPlattformString(), appSettings);
 
                 requests.forEach(function (request) {
@@ -145,7 +144,6 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
                                                     apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings));
                                                 }
                                             });
-
                                     });
                                 } else {
                                     facebookFactory.getEventsFromPageById(requestObject)
@@ -157,9 +155,7 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
                                 }
                                 break;
                         }
-
                     }
-
                 });
             }
         }
@@ -182,17 +178,17 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
      */
     this.getRatioFromFormatObject = function (_format) {
         var ratio = {
-            width:undefined,
-            height:undefined,
+            width: undefined,
+            height: undefined,
         };
         if (typeof _format !== "undefined" && _format.constructor === Array) {
             angular.forEach(_format, function (value, key) {
-                if(typeof value.filter !== "undefined") {
-                    if(value.filter === "native") {
-                        if(typeof value.width !== "undefined") {
+                if (typeof value.filter !== "undefined") {
+                    if (value.filter === "native") {
+                        if (typeof value.width !== "undefined") {
                             ratio.width = value.width;
                         }
-                        if(typeof value.height !== "undefined") {
+                        if (typeof value.height !== "undefined") {
                             ratio.height = value.height;
                         }
                     }
@@ -210,7 +206,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
      * @returns {number}
      */
     this.getDifference = function (_int1, _int2) {
-        if(_int1 > _int2) {
+        if (_int1 > _int2) {
             return _int1 - _int2;
         } else {
             return _int2 - _int1;
@@ -241,13 +237,13 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
 
         if (_array.constructor === Array) {
             angular.forEach(_array, function (value, key) {
-                if(typeof value.source !== "undefined") {
-                    if(typeof returnObject.thumb_url === "undefined") {
+                if (typeof value.source !== "undefined") {
+                    if (typeof returnObject.thumb_url === "undefined") {
                         returnObject.thumb_url = value.source;
                         returnObject.thumb_width = value.width;
                         returnObject.thumb_height = value.height;
                     } else {
-                        if(
+                        if (
                             that.getDifference(returnObject.thumb_width, 200) > that.getDifference(value.width, 200)
                             &&
                             value.width >= 200
@@ -258,12 +254,12 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
                         }
                     }
 
-                    if(typeof returnObject.img_url === "undefined") {
+                    if (typeof returnObject.img_url === "undefined") {
                         returnObject.img_url = value.source;
                         returnObject.img_width = value.width;
                         returnObject.img_height = value.height;
                     } else {
-                        if(
+                        if (
                             that.getDifference(returnObject.img_width, 700) > that.getDifference(value.width, 700)
                         ) {
                             returnObject.img_url = value.source;
@@ -272,12 +268,12 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
                         }
                     }
 
-                    if(typeof returnObject.native_url === "undefined") {
+                    if (typeof returnObject.native_url === "undefined") {
                         returnObject.native_url = value.source;
                         returnObject.native_width = value.width;
                         returnObject.native_height = value.height;
                     } else {
-                        if(
+                        if (
                             value.width > returnObject.native_width
                         ) {
                             returnObject.native_url = value.source;
@@ -302,12 +298,12 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
 
                 angular.forEach(_data.data.data, function (value, key) {
                     var tempResult;
-                    if(_helperObject.getNativeData === true || _helperObject.getNativeData === "true") {
+                    if (_helperObject.getNativeData === true || _helperObject.getNativeData === "true") {
                         tempResult = value;
                     } else {
                         tempResult = _this.getItemByJsonData(value, _helperObject);
                     }
-                    if(tempResult) {
+                    if (tempResult) {
                         requestResults.push(tempResult);
                     }
                 });
@@ -351,7 +347,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             intern_type: _item.type,
             intern_id: _item.id,
             img_url: _item.full_picture,
-            timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600*1000)
+            timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600 * 1000)
         });
 
         socialObject.date_time = new Date(socialObject.timestamp);
@@ -406,7 +402,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
         }
 
         if ((_helperObject.showAvatar === true || _helperObject.showAvatar === "true") && !socialObject.img_url) {
-            if(facebookPagesImages[_item.from.id]) {
+            if (facebookPagesImages[_item.from.id]) {
                 socialObject.img_url = facebookPagesImages[_item.from.id];
             }
         }
@@ -424,7 +420,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             blog_link: this.getThisPlattformLink() + _item.from.id + "/",
             intern_id: _item.id,
             post_url: _item.permalink_url,
-            timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600*1000),
+            timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600 * 1000),
             text: _item.description,
             markup: _item.embed_html || undefined,
             source: _item.source || undefined,
@@ -432,11 +428,11 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
 
         videoObject.date_time = new Date(videoObject.timestamp);
 
-        if(typeof _item.length !== "undefined") {
+        if (typeof _item.length !== "undefined") {
             videoObject.length = _item.length;
         }
 
-        if(typeof _item.format !== "undefined") {
+        if (typeof _item.format !== "undefined") {
             if (_item.format.length > 0) {
 
                 if (_item.format.length >= 3) {
@@ -446,17 +442,17 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
                 }
 
                 var ratio = this.getRatioFromFormatObject(_item.format);
-                if(typeof ratio.width !== "undefined") {
+                if (typeof ratio.width !== "undefined") {
                     videoObject.width = ratio.width;
                 }
-                if(typeof ratio.height !== "undefined") {
+                if (typeof ratio.height !== "undefined") {
                     videoObject.height = ratio.height;
                 }
             }
         }
 
         if ((_helperObject.showAvatar === true || _helperObject.showAvatar === "true") && !videoObject.img_url) {
-            if(facebookPagesImages[_item.from.id]) {
+            if (facebookPagesImages[_item.from.id]) {
                 videoObject.img_url = facebookPagesImages[_item.from.id];
             }
         }
@@ -473,7 +469,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             blog_link: this.getThisPlattformLink() + _item.from.id + "/",
             intern_id: _item.id,
             post_url: _item.link,
-            timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600*1000),
+            timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600 * 1000),
             text: _item.name || undefined,
             source: _item.images || undefined,
         });
@@ -500,17 +496,17 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             intern_id: _item.id,
             event_url: this.getThisPlattformLink() + _item.owner.id + "_" + _item.id + "/",
             ticket_url: _item.ticket_uri || undefined,
-            start_timestamp: apingTimeHelper.getTimestampFromDateString(_item.start_time, 1000, 3600*1000),
-            end_timestamp: _item.end_time ? apingTimeHelper.getTimestampFromDateString(_item.end_time, 1000, 3600*1000) : undefined,
+            start_timestamp: apingTimeHelper.getTimestampFromDateString(_item.start_time, 1000, 3600 * 1000),
+            end_timestamp: _item.end_time ? apingTimeHelper.getTimestampFromDateString(_item.end_time, 1000, 3600 * 1000) : undefined,
             caption: _item.name || undefined,
             text: _item.description || undefined,
             img_url: _item.cover ? _item.cover.source : undefined,
         });
 
-        if(eventObject.start_timestamp) {
+        if (eventObject.start_timestamp) {
             eventObject.start_date_time = new Date(eventObject.start_timestamp);
         }
-        if(eventObject.end_timestamp) {
+        if (eventObject.end_timestamp) {
             eventObject.end_date_time = new Date(eventObject.end_timestamp);
         }
 
@@ -528,7 +524,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
         }
 
         if ((_helperObject.showAvatar === true || _helperObject.showAvatar === "true") && !eventObject.img_url) {
-            if(facebookPagesImages[_item.from.id]) {
+            if (facebookPagesImages[_item.from.id]) {
                 eventObject.img_url = facebookPagesImages[_item.from.id];
             }
         }

@@ -9,7 +9,6 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
             link: function (scope, element, attrs, apingController) {
 
                 var appSettings = apingController.getAppSettings();
-
                 var requests = apingUtilityHelper.parseJsonFromAttributes(attrs.apingFacebook, apingFacebookHelper.getThisPlattformString(), appSettings);
 
                 requests.forEach(function (request) {
@@ -138,7 +137,6 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
                                                     apingController.concatToResults(apingFacebookHelper.getObjectByJsonData(_data, appSettings));
                                                 }
                                             });
-
                                     });
                                 } else {
                                     facebookFactory.getEventsFromPageById(requestObject)
@@ -150,9 +148,7 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
                                 }
                                 break;
                         }
-
                     }
-
                 });
             }
         }
