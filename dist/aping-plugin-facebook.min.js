@@ -1,6 +1,6 @@
 /**
     @name: aping-plugin-facebook 
-    @version: 0.7.6 (11-01-2016) 
+    @version: 0.7.7 (11-01-2016) 
     @author: Jonathan Hornung 
     @url: https://github.com/JohnnyTheTank/apiNG-plugin-facebook 
     @license: MIT
