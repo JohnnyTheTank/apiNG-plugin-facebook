@@ -1,6 +1,6 @@
 /**
     @name: aping-plugin-facebook 
-    @version: 0.7.5 (10-01-2016) 
+    @version: 0.7.6 (11-01-2016) 
     @author: Jonathan Hornung 
     @url: https://github.com/JohnnyTheTank/apiNG-plugin-facebook 
     @license: MIT
@@ -42,7 +42,7 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
                         requestObject.limit = appSettings.items;
                     }
 
-                    if (requestObject.limit == 0) {
+                    if (requestObject.count === 0 || requestObject.count === '0') {
                         return false;
                     }
 

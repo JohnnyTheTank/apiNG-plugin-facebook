@@ -35,7 +35,7 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
                         requestObject.limit = appSettings.items;
                     }
 
-                    if (requestObject.limit == 0) {
+                    if (requestObject.count === 0 || requestObject.count === '0') {
                         return false;
                     }
 
