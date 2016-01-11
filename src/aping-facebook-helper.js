@@ -1,11 +1,11 @@
 "use strict";
 
 jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper', 'apingUtilityHelper', 'facebookPagesImages', function (apingModels, apingTimeHelper, apingUtilityHelper, facebookPagesImages) {
-    this.getThisPlattformString = function () {
+    this.getThisPlatformString = function () {
         return "facebook";
     };
 
-    this.getThisPlattformLink = function () {
+    this.getThisPlatformLink = function () {
         return "https://facebook.com/";
     };
 
@@ -177,12 +177,12 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
     };
 
     this.getSocialItemByJsonData = function (_item, _helperObject) {
-        var socialObject = apingModels.getNew("social", this.getThisPlattformString());
+        var socialObject = apingModels.getNew("social", this.getThisPlatformString());
 
         $.extend(true, socialObject, {
             blog_name: _item.from.name,
             blog_id: _item.from.id,
-            blog_link: this.getThisPlattformLink() + _item.from.id + "/",
+            blog_link: this.getThisPlatformLink() + _item.from.id + "/",
             intern_type: _item.type,
             intern_id: _item.id,
             img_url: _item.full_picture,
@@ -204,7 +204,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
 
             case 'link':
                 socialObject.type = "link";
-                socialObject.post_url = this.getThisPlattformLink() + _item.id + "/";
+                socialObject.post_url = this.getThisPlatformLink() + _item.id + "/";
                 socialObject.content_url = _item.link;
                 socialObject.caption = _item.name;
                 break;
@@ -236,7 +236,7 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
             if (!_item.id) {
                 socialObject.post_url = _item.link;
             } else {
-                socialObject.post_url = this.getThisPlattformLink() + _item.id + "/";
+                socialObject.post_url = this.getThisPlatformLink() + _item.id + "/";
             }
         }
 
@@ -251,12 +251,12 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
     };
 
     this.getVideoItemByJsonData = function (_item, _helperObject) {
-        var videoObject = apingModels.getNew("video", this.getThisPlattformString());
+        var videoObject = apingModels.getNew("video", this.getThisPlatformString());
 
         $.extend(true, videoObject, {
             blog_name: _item.from.name,
             blog_id: _item.from.id,
-            blog_link: this.getThisPlattformLink() + _item.from.id + "/",
+            blog_link: this.getThisPlatformLink() + _item.from.id + "/",
             intern_id: _item.id,
             post_url: _item.permalink_url,
             timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600 * 1000),
@@ -300,12 +300,12 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
     };
 
     this.getImageItemByJsonData = function (_item, _helperObject) {
-        var imageObject = apingModels.getNew("image", this.getThisPlattformString());
+        var imageObject = apingModels.getNew("image", this.getThisPlatformString());
 
         $.extend(true, imageObject, {
             blog_name: _item.from.name,
             blog_id: _item.from.id,
-            blog_link: this.getThisPlattformLink() + _item.from.id + "/",
+            blog_link: this.getThisPlatformLink() + _item.from.id + "/",
             intern_id: _item.id,
             post_url: _item.link,
             timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600 * 1000),
@@ -326,14 +326,14 @@ jjtApingFacebook.service('apingFacebookHelper', ['apingModels', 'apingTimeHelper
     };
 
     this.getEventItemByJsonData = function (_item, _helperObject) {
-        var eventObject = apingModels.getNew("event", this.getThisPlattformString());
+        var eventObject = apingModels.getNew("event", this.getThisPlatformString());
 
         $.extend(true, eventObject, {
             artist_name: _item.owner.name,
             artist_id: _item.owner.id,
-            artist_link: this.getThisPlattformLink() + _item.owner.id + "/",
+            artist_link: this.getThisPlatformLink() + _item.owner.id + "/",
             intern_id: _item.id,
-            event_url: this.getThisPlattformLink() + _item.owner.id + "_" + _item.id + "/",
+            event_url: this.getThisPlatformLink() + _item.owner.id + "_" + _item.id + "/",
             ticket_url: _item.ticket_uri || undefined,
             start_timestamp: apingTimeHelper.getTimestampFromDateString(_item.start_time, 1000, 3600 * 1000),
             end_timestamp: _item.end_time ? apingTimeHelper.getTimestampFromDateString(_item.end_time, 1000, 3600 * 1000) : undefined,

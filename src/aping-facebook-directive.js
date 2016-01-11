@@ -9,7 +9,7 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
             link: function (scope, element, attrs, apingController) {
 
                 var appSettings = apingController.getAppSettings();
-                var requests = apingUtilityHelper.parseJsonFromAttributes(attrs.apingFacebook, apingFacebookHelper.getThisPlattformString(), appSettings);
+                var requests = apingUtilityHelper.parseJsonFromAttributes(attrs.apingFacebook, apingFacebookHelper.getThisPlatformString(), appSettings);
 
                 requests.forEach(function (request) {
 
@@ -27,7 +27,7 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
                     //create requestObject for api request call
                     var requestObject = {
                         page: request.page,
-                        access_token: apingUtilityHelper.getApiCredentials(apingFacebookHelper.getThisPlattformString(), "access_token"),
+                        access_token: apingUtilityHelper.getApiCredentials(apingFacebookHelper.getThisPlatformString(), "access_token"),
                     };
                     if (typeof request.items !== "undefined") {
                         requestObject.limit = request.items;
@@ -35,7 +35,7 @@ var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
                         requestObject.limit = appSettings.items;
                     }
 
-                    if (requestObject.count === 0 || requestObject.count === '0') {
+                    if (requestObject.limit === 0 || requestObject.limit === '0') {
                         return false;
                     }
 
