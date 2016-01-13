@@ -1,11 +1,14 @@
 [logo]: http://aping.io/logo/320/aping-plugin.png "apiNG Plugin"
 ![apiNG][logo]
 
+[![npm version](https://badge.fury.io/js/aping-plugin-facebook.png)](https://badge.fury.io/js/aping-plugin-facebook)
+[![Bower version](https://badge.fury.io/bo/apiNG-plugin-facebook.png)](https://badge.fury.io/bo/apiNG-plugin-facebook)
+
 **_apiNG-plugin-facebook_** is a [Facebook Graph API](https://developers.facebook.com/docs/graph-api) plugin for [**apiNG**](https://github.com/JohnnyTheTank/apiNG).
 
 # Information
 * **Supported apiNG models: `social`, `image`, `video`, `event`**
-* This plugin supports the [`get-native-data` parameter](https://aping.readme.io/docs/configuration#parameters)
+* This plugin supports the [`get-native-data` parameter](https://aping.readme.io/docs/advanced#parameters)
 * This plugin needs an [access token](#2-access-token) :warning:
 * Used promise library: [angular-facebook-api-factory](https://github.com/JohnnyTheTank/angular-facebook-api-factory) _(included in distribution files)_
 
@@ -14,7 +17,7 @@
 1. [INSTALLATION](#1-installation)
     1. Get file
     2. Include file
-    3. Add dependencies
+    3. Add dependency
     4. Add plugin
 2. [ACCESS TOKEN](#2-access-token)
     1. Generate your `access_token`
@@ -48,7 +51,7 @@ Include `aping-plugin-facebook.min.js` in your apiNG application
 <script src="aping-plugin-facebook.min.js"></script>
 ```
 
-### III. Add dependencies
+### III. Add dependency
 Add the module `jtt_aping_facebook` as a dependency to your app module:
 ```js
 var app = angular.module('app', ['jtt_aping', 'jtt_aping_facebook']);
