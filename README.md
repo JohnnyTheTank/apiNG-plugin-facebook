@@ -31,10 +31,11 @@
 ## 1. INSTALLATION
 
 ### I. Get file
-Install via either [bower](http://bower.io/), [npm](https://www.npmjs.com/) or downloaded files:
+Install via either [bower](http://bower.io/), [npm](https://www.npmjs.com/), CDN (jsDelivr) or downloaded files:
 
 * `bower install apiNG-plugin-facebook --save`
 * `npm install aping-plugin-facebook --save`
+* use [CDN file](https://www.jsdelivr.com/projects/aping.plugin-facebook)
 * download [apiNG-plugin-facebook.zip](https://github.com/JohnnyTheTank/apiNG-plugin-facebook/zipball/master)
 
 ### II. Include file
@@ -46,6 +47,9 @@ Include `aping-plugin-facebook.min.js` in your apiNG application
 
 <!-- when using npm -->
 <script src="node_modules/aping-plugin-facebook/dist/aping-plugin-facebook.min.js"></script>
+
+<!-- when using cdn file -->
+<script src="//cdn.jsdelivr.net/aping.plugin-facebook/latest/aping-plugin-facebook.min.js"></script>
 
 <!-- when using downloaded files -->
 <script src="aping-plugin-facebook.min.js"></script>
