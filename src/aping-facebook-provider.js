@@ -1,6 +1,7 @@
 "use strict";
-jjtApingFacebook.config(['$provide', function ($provide) {
+angular.module("jtt_aping_facebook")
+    .config(['$provide', function ($provide) {
 
-    $provide.value("facebookPagesImages", {});
+        $provide.value("facebookPagesImages", {});
 
-}]);
+    }]);

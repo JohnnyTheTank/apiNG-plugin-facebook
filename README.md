@@ -58,7 +58,7 @@ Include `aping-plugin-facebook.min.js` in your apiNG application
 ### III. Add dependency
 Add the module `jtt_aping_facebook` as a dependency to your app module:
 ```js
-var app = angular.module('app', ['jtt_aping', 'jtt_aping_facebook']);
+angular.module('app', ['jtt_aping', 'jtt_aping_facebook']);
 ```
 
 ### IV. Add the plugin

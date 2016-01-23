@@ -1,6 +1,6 @@
 "use strict";
 
-var jjtApingFacebook = angular.module("jtt_aping_facebook", ['jtt_facebook'])
+angular.module("jtt_aping_facebook", ['jtt_facebook'])
     .directive('apingFacebook', ['apingFacebookHelper', 'apingUtilityHelper', 'facebookFactory', 'facebookPagesImages', function (apingFacebookHelper, apingUtilityHelper, facebookFactory, facebookPagesImages) {
         return {
             require: '?aping',
