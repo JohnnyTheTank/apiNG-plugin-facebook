@@ -220,7 +220,11 @@ angular.module("jtt_aping_facebook")
          * @param _array {Array}
          * @returns {Object}
          */
-        this.getImagesFromImageArray = function (_array) {
+        this.getImagesFromArray = function (_array, _imgPropertyName) {
+
+            if (angular.isUndefined(_imgPropertyName)) {
+                _imgPropertyName = "source";
+            }
 
             var that = this;
 
@@ -238,9 +242,10 @@ angular.module("jtt_aping_facebook")
 
             if (_array.constructor === Array) {
                 angular.forEach(_array, function (value, key) {
-                    if (typeof value.source !== "undefined") {
-                        if (typeof returnObject.thumb_url === "undefined") {
-                            returnObject.thumb_url = value.source;
+
+                    if (angular.isDefined(value[_imgPropertyName])) {
+                        if (angular.isUndefined(returnObject.thumb_url)) {
+                            returnObject.thumb_url = value[_imgPropertyName];
                             returnObject.thumb_width = value.width;
                             returnObject.thumb_height = value.height;
                         } else {
@@ -249,35 +254,35 @@ angular.module("jtt_aping_facebook")
                                 &&
                                 value.width >= 200
                             ) {
-                                returnObject.thumb_url = value.source;
+                                returnObject.thumb_url = value[_imgPropertyName];
                                 returnObject.thumb_width = value.width;
                                 returnObject.thumb_height = value.height;
                             }
                         }
 
-                        if (typeof returnObject.img_url === "undefined") {
-                            returnObject.img_url = value.source;
+                        if (angular.isUndefined(returnObject.img_url)) {
+                            returnObject.img_url = value[_imgPropertyName];
                             returnObject.img_width = value.width;
                             returnObject.img_height = value.height;
                         } else {
                             if (
                                 that.getDifference(returnObject.img_width, 700) > that.getDifference(value.width, 700)
                             ) {
-                                returnObject.img_url = value.source;
+                                returnObject.img_url = value[_imgPropertyName];
                                 returnObject.img_width = value.width;
                                 returnObject.img_height = value.height;
                             }
                         }
 
-                        if (typeof returnObject.native_url === "undefined") {
-                            returnObject.native_url = value.source;
+                        if (angular.isUndefined(returnObject.native_url)) {
+                            returnObject.native_url = value[_imgPropertyName];
                             returnObject.native_width = value.width;
                             returnObject.native_height = value.height;
                         } else {
                             if (
                                 value.width > returnObject.native_width
                             ) {
-                                returnObject.native_url = value.source;
+                                returnObject.native_url = value[_imgPropertyName];
                                 returnObject.native_width = value.width;
                                 returnObject.native_height = value.height;
                             }
@@ -347,7 +352,9 @@ angular.module("jtt_aping_facebook")
                 blog_link: this.getThisPlatformLink() + _item.from.id + "/",
                 intern_type: _item.type,
                 intern_id: _item.id,
+                thumb_url: _item.picture,
                 img_url: _item.full_picture,
+                native_url: _item.full_picture,
                 timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600 * 1000)
             });
 
@@ -408,7 +415,6 @@ angular.module("jtt_aping_facebook")
                 }
             }
 
-
             return socialObject;
         };
 
@@ -433,14 +439,21 @@ angular.module("jtt_aping_facebook")
                 videoObject.length = _item.length;
             }
 
+
             if (typeof _item.format !== "undefined") {
                 if (_item.format.length > 0) {
 
-                    if (_item.format.length >= 3) {
-                        videoObject.img_url = _item.format[2].picture;
-                    } else {
-                        videoObject.img_url = _item.format[_item.format.length - 1].picture;
-                    }
+                    var tempImageArray = this.getImagesFromArray(_item.format, "picture");
+
+                    tempImageArray.thumb_width = undefined;
+                    tempImageArray.thumb_height = undefined;
+                    tempImageArray.img_width = undefined;
+                    tempImageArray.img_height = undefined;
+                    tempImageArray.native_width = undefined;
+                    tempImageArray.native_height = undefined;
+
+                    angular.extend(videoObject, tempImageArray);
+
 
                     var ratio = this.getRatioFromFormatObject(_item.format);
                     if (typeof ratio.width !== "undefined") {
@@ -479,8 +492,7 @@ angular.module("jtt_aping_facebook")
 
             if (_item.images.length > 0) {
 
-                var tempImageArray = this.getImagesFromImageArray(_item.images);
-
+                var tempImageArray = this.getImagesFromArray(_item.images, "source");
                 angular.extend(imageObject, tempImageArray);
             }
 
