@@ -1,6 +1,6 @@
 /**
     @name: aping-plugin-facebook 
-    @version: 0.7.7 (24-01-2016) 
+    @version: 0.7.8 (28-01-2016) 
     @author: Jonathan Hornung 
     @url: https://github.com/JohnnyTheTank/apiNG-plugin-facebook 
     @license: MIT
@@ -341,7 +341,7 @@ angular.module("jtt_aping_facebook")
         this.getSocialItemByJsonData = function (_item, _helperObject) {
             var socialObject = apingModels.getNew("social", this.getThisPlatformString());
 
-            $.extend(true, socialObject, {
+            angular.extend(socialObject, {
                 blog_name: _item.from.name,
                 blog_id: _item.from.id,
                 blog_link: this.getThisPlatformLink() + _item.from.id + "/",
@@ -415,7 +415,7 @@ angular.module("jtt_aping_facebook")
         this.getVideoItemByJsonData = function (_item, _helperObject) {
             var videoObject = apingModels.getNew("video", this.getThisPlatformString());
 
-            $.extend(true, videoObject, {
+            angular.extend(videoObject, {
                 blog_name: _item.from.name,
                 blog_id: _item.from.id,
                 blog_link: this.getThisPlatformLink() + _item.from.id + "/",
@@ -464,7 +464,7 @@ angular.module("jtt_aping_facebook")
         this.getImageItemByJsonData = function (_item, _helperObject) {
             var imageObject = apingModels.getNew("image", this.getThisPlatformString());
 
-            $.extend(true, imageObject, {
+            angular.extend(imageObject, {
                 blog_name: _item.from.name,
                 blog_id: _item.from.id,
                 blog_link: this.getThisPlatformLink() + _item.from.id + "/",
@@ -481,7 +481,7 @@ angular.module("jtt_aping_facebook")
 
                 var tempImageArray = this.getImagesFromImageArray(_item.images);
 
-                $.extend(true, imageObject, tempImageArray);
+                angular.extend(imageObject, tempImageArray);
             }
 
             return imageObject;
@@ -490,7 +490,7 @@ angular.module("jtt_aping_facebook")
         this.getEventItemByJsonData = function (_item, _helperObject) {
             var eventObject = apingModels.getNew("event", this.getThisPlatformString());
 
-            $.extend(true, eventObject, {
+            angular.extend(eventObject, {
                 artist_name: _item.owner.name,
                 artist_id: _item.owner.id,
                 artist_link: this.getThisPlatformLink() + _item.owner.id + "/",
@@ -529,7 +529,6 @@ angular.module("jtt_aping_facebook")
                     eventObject.img_url = facebookPagesImages[_item.from.id];
                 }
             }
-
             return eventObject;
         };
     }]);;"use strict";
