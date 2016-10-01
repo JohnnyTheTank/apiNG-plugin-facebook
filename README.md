@@ -2,8 +2,8 @@
 ![apiNG][logo]
 
 [![Join the chat at https://gitter.im/JohnnyTheTank/apiNG](https://img.shields.io/badge/GITTER-join%20chat-green.svg)](https://gitter.im/JohnnyTheTank/apiNG?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![npm version](https://badge.fury.io/js/aping-plugin-facebook.png)](https://badge.fury.io/js/aping-plugin-facebook)
-[![Bower version](https://badge.fury.io/bo/apiNG-plugin-facebook.png)](https://badge.fury.io/bo/apiNG-plugin-facebook)
+[![npm version](https://badge.fury.io/js/aping-plugin-facebook.svg)](https://badge.fury.io/js/aping-plugin-facebook)
+[![Bower version](https://badge.fury.io/bo/apiNG-plugin-facebook.svg)](https://badge.fury.io/bo/apiNG-plugin-facebook)
 
 **_apiNG-plugin-facebook_** is a [Facebook Graph API](https://developers.facebook.com/docs/graph-api) plugin for [**apiNG**](https://github.com/JohnnyTheTank/apiNG).
 
