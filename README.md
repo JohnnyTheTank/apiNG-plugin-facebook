@@ -50,7 +50,7 @@ Include `aping-plugin-facebook.min.js` in your apiNG application
 <script src="node_modules/aping-plugin-facebook/dist/aping-plugin-facebook.min.js"></script>
 
 <!-- when using cdn file -->
-<script src="//cdn.jsdelivr.net/aping.plugin-facebook/latest/aping-plugin-facebook.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aping-plugin-facebook@latest/dist/aping-plugin-facebook.min.js"></script>
 
 <!-- when using downloaded files -->
 <script src="aping-plugin-facebook.min.js"></script>
